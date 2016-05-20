@@ -1,0 +1,7 @@
+Temp/*
+Library/*
+obj/*
+Assets/StreamingAssets/*
+Assets/LuaFramework/NGUI/*
+*.csproj
+Assets/LuaFramework/ToLua/Source/Generate/*
