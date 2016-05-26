@@ -121,11 +121,6 @@ public class Packager {
         assetfile = assetPath + "shared" + AppConst.ExtName;
         mainAsset = LoadAsset("Shared/Atlas/Dialog.prefab");
         BuildPipeline.BuildAssetBundle(mainAsset, null, assetfile, options, target);
-        ///icon
-        /*BuildPipeline.PushAssetDependencies();
-        assetfile = assetPath = "icon" + AppConst.ExtName;
-        mainAsset = LoadAsset("Shared/Atlas/icon.prefab");
-        BuildPipeline.BuildAssetBundle(mainAsset, null, assetfile, options, target);*/
 
         ///------------------------------生成PromptPanel素材绑定-----------------------------------
         BuildPipeline.PushAssetDependencies();

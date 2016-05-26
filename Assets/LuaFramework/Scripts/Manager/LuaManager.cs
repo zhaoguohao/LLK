@@ -98,6 +98,7 @@ namespace LuaFramework {
 
         // Update is called once per frame
         public object[] CallFunction(string funcName, params object[] args) {
+            Debug.Log("尝试这样调用一个函数, 可惜应该是没有找到:" + funcName);
             LuaFunction func = lua.GetFunction(funcName);
             if (func != null) {
                 return func.Call(args);

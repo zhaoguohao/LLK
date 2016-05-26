@@ -4,4 +4,11 @@ obj/*
 Assets/StreamingAssets/*
 Assets/LuaFramework/NGUI/*
 *.csproj
-Assets/LuaFramework/ToLua/Source/Generate/*
+luaframework/*
+luaframework/*/*
+
+luaframework/lua/system/list.lua
+
+luaframework/lua/system/list.lua
+
+luaframework/lua/system/list.lua

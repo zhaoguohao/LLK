@@ -21,7 +21,7 @@ public void addLua(LuaTable lt, string ltName)
     print("tostring is " + ltName);
     Debug.Log("lt.name is "+lt.GetStringField("x"));
     print("lt 's hashcode is" + lt.GetHashCode());
-    
+    print("name is is i si sis is is nnn名字是名字名字名字名字" + name);
     /*打印所有的属性出来*/
     PropertyInfo[] infos = lt.GetType().GetProperties();
     foreach(PropertyInfo info in infos)
@@ -67,19 +67,21 @@ public LuaTable getLua(string ln)
 #endregion
 
         protected void Awake() {
-            Util.CallMethod(name, "Awake", gameObject);
+            //Util.CallMethod(name, "Awake", gameObject);
+            callLua("Awake", gameObject);
         }
 
         protected void Start() {
-            Util.CallMethod(name, "Start");
+            //Util.CallMethod(name, "Start");
+            callLua("Start");
         }
 
         protected void OnClick() {
-            Util.CallMethod(name, "OnClick");
+            //Util.CallMethod(name, "OnClick");
         }
 
         protected void OnClickEvent(GameObject go) {
-            Util.CallMethod(name, "OnClick", go);
+            //Util.CallMethod(name, "OnClick", go);
         }
 
         /// <summary>
