@@ -12,6 +12,7 @@ public class UnityEngine_WWWWrap
 		L.RegFunction("EscapeURL", EscapeURL);
 		L.RegFunction("UnEscapeURL", UnEscapeURL);
 		L.RegFunction("GetAudioClip", GetAudioClip);
+		L.RegFunction("GetAudioClipCompressed", GetAudioClipCompressed);
 		L.RegFunction("LoadImageIntoTexture", LoadImageIntoTexture);
 		L.RegFunction("LoadUnityWeb", LoadUnityWeb);
 		L.RegFunction("LoadFromCacheOrDownload", LoadFromCacheOrDownload);
@@ -223,6 +224,48 @@ public class UnityEngine_WWWWrap
 			else
 			{
 				return LuaDLL.luaL_throw(L, "invalid arguments to method: UnityEngine.WWW.GetAudioClip");
+			}
+		}
+		catch(Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int GetAudioClipCompressed(IntPtr L)
+	{
+		try
+		{
+			int count = LuaDLL.lua_gettop(L);
+
+			if (count == 1 && TypeChecker.CheckTypes(L, 1, typeof(UnityEngine.WWW)))
+			{
+				UnityEngine.WWW obj = (UnityEngine.WWW)ToLua.ToObject(L, 1);
+				UnityEngine.AudioClip o = obj.GetAudioClipCompressed();
+				ToLua.Push(L, o);
+				return 1;
+			}
+			else if (count == 2 && TypeChecker.CheckTypes(L, 1, typeof(UnityEngine.WWW), typeof(bool)))
+			{
+				UnityEngine.WWW obj = (UnityEngine.WWW)ToLua.ToObject(L, 1);
+				bool arg0 = LuaDLL.lua_toboolean(L, 2);
+				UnityEngine.AudioClip o = obj.GetAudioClipCompressed(arg0);
+				ToLua.Push(L, o);
+				return 1;
+			}
+			else if (count == 3 && TypeChecker.CheckTypes(L, 1, typeof(UnityEngine.WWW), typeof(bool), typeof(UnityEngine.AudioType)))
+			{
+				UnityEngine.WWW obj = (UnityEngine.WWW)ToLua.ToObject(L, 1);
+				bool arg0 = LuaDLL.lua_toboolean(L, 2);
+				UnityEngine.AudioType arg1 = (UnityEngine.AudioType)ToLua.ToObject(L, 3);
+				UnityEngine.AudioClip o = obj.GetAudioClipCompressed(arg0, arg1);
+				ToLua.Push(L, o);
+				return 1;
+			}
+			else
+			{
+				return LuaDLL.luaL_throw(L, "invalid arguments to method: UnityEngine.WWW.GetAudioClipCompressed");
 			}
 		}
 		catch(Exception e)

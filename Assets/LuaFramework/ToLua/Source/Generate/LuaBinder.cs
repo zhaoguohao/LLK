@@ -13,9 +13,12 @@ public static class LuaBinder
 		UIPanelWrap.Register(L);
 		UILabelWrap.Register(L);
 		UIGridWrap.Register(L);
+		UISpriteWrap.Register(L);
+		UIButtonWrap.Register(L);
 		UIWidgetContainerWrap.Register(L);
 		BaseWrap.Register(L);
 		ManagerWrap.Register(L);
+		UIButtonColorWrap.Register(L);
 		L.BeginModule("UnityEngine");
 		UnityEngine_ComponentWrap.Register(L);
 		UnityEngine_BehaviourWrap.Register(L);

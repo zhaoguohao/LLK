@@ -11,6 +11,7 @@ public class UnityEngine_BehaviourWrap
 		L.RegFunction("__eq", op_Equality);
 		L.RegFunction("__tostring", Lua_ToString);
 		L.RegVar("enabled", get_enabled, set_enabled);
+		L.RegVar("isActiveAndEnabled", get_isActiveAndEnabled, null);
 		L.EndClass();
 	}
 
@@ -89,6 +90,25 @@ public class UnityEngine_BehaviourWrap
 		catch(Exception e)
 		{
 			return LuaDLL.toluaL_exception(L, e, o == null ? "attempt to index enabled on a nil value" : e.Message);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int get_isActiveAndEnabled(IntPtr L)
+	{
+		object o = null;
+
+		try
+		{
+			o = ToLua.ToObject(L, 1);
+			UnityEngine.Behaviour obj = (UnityEngine.Behaviour)o;
+			bool ret = obj.isActiveAndEnabled;
+			LuaDLL.lua_pushboolean(L, ret);
+			return 1;
+		}
+		catch(Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e, o == null ? "attempt to index isActiveAndEnabled on a nil value" : e.Message);
 		}
 	}
 
