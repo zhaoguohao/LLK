@@ -141,7 +141,8 @@ function LLKCtrl.OnItemClick(go)
     local ll = lh:getLua("just test name");
     --ll:onDispose()
     print("whhhhhhhh======>", ll.txt.text)
-    ll:display()  
+    ll:display()
+    ll:onSelect(true)
     if crtState == LLKItemCtrl.STATE_NONE then            
         print'--第一下点'
 		crtState = LLKItemCtrl.STATE_FIRST

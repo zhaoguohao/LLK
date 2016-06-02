@@ -1,6 +1,6 @@
 --核心算法在这里
-local H = 6 --行
-local V = 10  --列
+local H = 6 --行 up to down : x
+local V = 10  --列  left to right :y 
 local QiTrack = nil
 llk = {}
 llk.init = function(track)
@@ -44,6 +44,20 @@ llk.checkALine = function(first,second)
     first:display()
     second:display()
     local delta 
+    --if one at the out side, but not in a line
+    if (first.x == 0 or first.y == 0 or first.x == H+1 or first.y == V+1
+    or second.x == 0 or second.y == 0 or second.x == H+1 or second.y == V+1) 
+    and (first.x ~= second.x and first.y ~= second.y) then
+        return false
+    end
+    --if in a line at out side
+    if first.x == second.x and first.x == 0 
+    or first.y == second.y and first.y == 0
+    or first.x == second.x and first.x == H+1
+    or first.y == second.y and first.y == V+1 then
+        return true
+    end
+
 
     if first.x == second.x then
         if second.y > first.y then
@@ -90,12 +104,14 @@ function llk.getEmpty(qi)
     local ret = {}
     local i = 1
     local l,r,u,d
+    local found = false
     --左侧
     for h=qi.y-1,1,-1 do
         --print('qi.x, h is: ',qi.x,h)
         if QiTrack[qi.x][h].value > 0 then
             --有棋子,结束循环
             l = QiTrack[qi.x][h]
+            found = true
             break
         else
             --是空的
@@ -103,11 +119,18 @@ function llk.getEmpty(qi)
             i = i+1
         end
     end
+    if found == false then
+        l = LLKItemCtrl.New(qi.x,0,0)
+        ret[i] = l
+        i = i + 1
+    end
+    found = false
     --右侧
     for h=qi.y+1,V,1 do
         if QiTrack[qi.x][h].value > 0 then
             --有棋子,结束循环
             r = QiTrack[qi.x][h]
+            found = true
             break
         else
             --是空的
@@ -115,16 +138,29 @@ function llk.getEmpty(qi)
             i = i+1
         end
     end
+    if found == false then
+        r = LLKItemCtrl.New(qi.x,V+1,0)
+        ret[i] = r 
+        i = i + 1
+    end
+    found = false
     --上侧
     for v=qi.x-1,1,-1 do
         if QiTrack[v][qi.y].value > 0 then
             u = QiTrack[v][qi.y]
+            found = true
             break
         else
             ret[i] = QiTrack[v][qi.y]
             i = i+1
         end
     end
+    if found == false then
+        u = LLKItemCtrl.New(0,qi.y,0)
+        ret[i] = u
+        i = i + 1
+    end
+    found = false
     --下侧
     for v=qi.x+1,H,1 do
         if QiTrack[v][qi.y].value > 0 then
@@ -135,5 +171,10 @@ function llk.getEmpty(qi)
             i = i+1
         end
     end
+    if found == false then
+        d = LLKItemCtrl.New(H+1,qi.y,0)
+        ret[i] = d 
+    end
+    found = false
     return ret,l,r,u,d
    end

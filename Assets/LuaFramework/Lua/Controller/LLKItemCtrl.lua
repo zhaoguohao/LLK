@@ -69,8 +69,9 @@ function LLKItemCtrl.New(xx, yy, identify, obj)
         self.value = img
     end
 
-    function item:select(yes)
+    function item:onSelect(yes)
         if yes then
+            self.spt.depth = 3
         else
         end
     end
